@@ -28,7 +28,17 @@ const authorize = (roles = []) => {
   };
 };
 
+// Middleware to check if the user's email is confirmed
+const checkEmailConfirmed = (req, res, next) => {
+  if (req.user.emailConfirmed) {
+    return next();
+  } else {
+    return res.status(403).send('Email not confirmed');
+  }
+};
+
 module.exports = {
     authenticateToken,
     authorize,
+    checkEmailConfirmed,
   };

@@ -13,12 +13,14 @@ const news = require('./routes/news')
 const weather = require('./routes/weather')
 const environment = require('./routes/environment')
 const utils = require('./routes/utils')
+const admin = require('./routes/admin');
 const dotenv = require('dotenv');
 dotenv.config();
 
 // Initialize the Express app
 const app = express();
 
+// Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log('MongoDB connection error:', err));
@@ -26,7 +28,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 // Middleware
 app.use(bodyParser.json()); // Parse JSON bodies
 app.use(cors()); // Enable CORS for all routes
-app.use(timeLog);
+app.use(timeLog); // Use the timeLog middleware
 
 
 // Define a basic route
@@ -34,24 +36,7 @@ app.get('/', (req, res) => {
   res.send('Welcome to the API!');
 });
 
-// Define a sample route
-app.get('/api/sample', (req, res) => {
-  res.json({ message: 'This is a sample API route!' });
-});
-
-// Define a route with URL parameters
-app.get('/api/user/:id', (req, res) => {
-  const userId = req.params.id;
-  res.json({ message: `User ID: ${userId}` });
-});
-
-// Define a POST route
-app.post('/api/data', (req, res) => {
-  const data = req.body;
-  res.json({ message: 'Data received!', data });
-});
-
-
+// Router routes
 app.use('/quotes', quotes);
 app.use('/colors', colors);
 app.use('/ai', aiRoutes);
@@ -61,6 +46,7 @@ app.use('/news', news);
 app.use('/weather', weather);
 app.use('/environment', environment);
 app.use('/utils', utils);
+app.use('/admin', admin);
 
 // Start the server
 const PORT = process.env.PORT || 5000;

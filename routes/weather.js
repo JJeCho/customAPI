@@ -2,7 +2,6 @@ const express = require("express");
 const axios = require("axios");
 const router = express.Router();
 
-// Route to return the current weather based on user's location
 router.get("/", async (req, res) => {
   const { lat, lon } = req.query;
 
@@ -72,7 +71,7 @@ router.get("/ensemble", async (req, res) => {
         params: {
           latitude: lat,
           longitude: lon,
-          daily: ["temperature_2m_max", "temperature_2m_min"], // Example fields
+          daily: ["temperature_2m_max", "temperature_2m_min"],
           timezone: "auto",
         },
       }

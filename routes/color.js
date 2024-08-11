@@ -2,7 +2,6 @@ const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 
-// Function to fetch a new theme of colors from Colormind API
 const getColorTheme = async () => {
   try {
     const response = await axios.post('http://colormind.io/api/', {
@@ -17,7 +16,6 @@ const getColorTheme = async () => {
   }
 };
 
-// Function to fetch color data from Color Serial API
 const getColorData = async (color) => {
     try {
       const response = await axios.get(`https://color.serialif.com/${encodeURIComponent(color)}`);
@@ -30,7 +28,6 @@ const getColorData = async (color) => {
     }
   };
 
-// Route to retrieve a new color theme from Colormind API
 router.get('/theme', async (req, res) => {
   try {
     const theme = await getColorTheme();
@@ -40,7 +37,7 @@ router.get('/theme', async (req, res) => {
   }
 });
 
-//Route to retrieve base, complementary, and grayscale colors from Color Serial API
+
 router.get('/complementary', async (req, res) => {
     const color = req.query.color;
   

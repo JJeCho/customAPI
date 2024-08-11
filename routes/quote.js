@@ -17,10 +17,8 @@ const cheerio = require('cheerio');
       const htmlContent = response.data.parse.text['*'];
       const $ = cheerio.load(htmlContent);
   
-      // Extract the quote
       const quote = $('td').eq(2).find('td').first().text().trim();
   
-      // Extract the author
       let author = $('td').eq(2).find('td').last().text().trim();
       author = author.replace(/^~\s*|\s*~$/g, ''); 
 
@@ -32,8 +30,6 @@ const cheerio = require('cheerio');
   };
  
 
-
-// Quote of the Day
 router.get('/', async (req, res) => {
   try {
     const quoteOfTheDay = await getQuoteOfTheDay();
@@ -43,7 +39,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Fetch Random Quote
 const getRandomQuote = async () => {
   try {
     const response = await axios.get('https://api.quotable.io/random');
@@ -56,7 +51,6 @@ const getRandomQuote = async () => {
   }
 };
 
-// Random Quote Route
 router.get('/random', async (req, res) => {
   try {
     const randomQuote = await getRandomQuote();
