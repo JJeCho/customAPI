@@ -16,6 +16,8 @@ const utils = require('./routes/utils')
 const admin = require('./routes/admin');
 const dotenv = require('dotenv');
 const calendar = require('./routes/calendar');
+const machineLearning = require('./routes/machineLearning');
+const cybersecurity = require('./routes/cybersecurity');
 dotenv.config();
 
 // Initialize the Express app
@@ -49,7 +51,8 @@ app.use('/environment', environment);
 app.use('/utils', utils);
 app.use('/admin', admin);
 app.use('/holidays', calendar);
-
+app.use('/ml', machineLearning);
+app.use('/cybersecurity', cybersecurity);
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
