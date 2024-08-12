@@ -11,7 +11,7 @@ const askGPT3 = async (prompt) => {
       {
         model: "gpt-3.5-turbo",
         prompt: prompt,
-        max_tokens: 10,
+        max_tokens: 150,
       },
       {
         headers: {

@@ -57,6 +57,14 @@ router.get("/historical", async (req, res) => {
   }
 });
 
+/**
+ * TODO - Validate Input
+ * Eventually will allow front end client to select multiple models
+ * https://open-meteo.com/en/docs
+ * Make sure that the routes are capable of adding input to params
+ *  - hourly, daily, models
+ */
+
 router.get("/ensemble", async (req, res) => {
   const { lat, lon } = req.query;
 

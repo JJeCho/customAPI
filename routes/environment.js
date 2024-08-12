@@ -2,7 +2,6 @@ const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 
-// Helper function to form time ranges
 const range = (start, stop, step) =>
 	Array.from({ length: (stop - start) / step }, (_, i) => start + i * step);
 

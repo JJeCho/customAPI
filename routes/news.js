@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
     const response = await axios.get('https://newsapi.org/v2/top-headlines', {
       params: {
         country: 'us',
-        apiKey: process.env.NEWS_API_KEY, // Store your API key in .env
+        apiKey: process.env.NEWS_API_KEY, 
       },
     });
     res.json(response.data);
@@ -43,8 +43,8 @@ router.get('/search', async (req, res) => {
       const response = await axios.get('https://serpapi.com/search.json', {
         params: {
           q: 'florida man',
-          tbm: 'nws', // news tab on Google
-          api_key: process.env.SERPAPI_KEY, // Store your SerpAPI key in .env
+          tbm: 'nws',
+          api_key: process.env.SERPAPI_KEY,
         },
       });
       res.json(response.data.news_results);
