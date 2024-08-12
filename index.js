@@ -15,6 +15,7 @@ const environment = require('./routes/environment')
 const utils = require('./routes/utils')
 const admin = require('./routes/admin');
 const dotenv = require('dotenv');
+const calendar = require('./routes/calendar');
 dotenv.config();
 
 // Initialize the Express app
@@ -47,6 +48,7 @@ app.use('/weather', weather);
 app.use('/environment', environment);
 app.use('/utils', utils);
 app.use('/admin', admin);
+app.use('/holidays', calendar);
 
 // Start the server
 const PORT = process.env.PORT || 5000;
